@@ -2,12 +2,10 @@ package schemas
 
 import (
 	"time"
-
-	"gorm.io/gorm"
 )
 
 type User struct {
-	gorm.Model
+	ID 			string
 	NAME 		string
 	PASSWORD 	string
 	EMAIL    	string 
@@ -15,7 +13,7 @@ type User struct {
 }
 
 type UserResponse struct {
-	ID        	uint      	`json:"id"`
+	ID        	string     	`json:"id"`
 	CREATEAT 	time.Time 	`json:"createdAt"`
 	UPDATEDAT 	time.Time   `json:"updatedAt"`
 	DELETEDAT 	time.Time 	`json:"deteledAt,omitempty"`
