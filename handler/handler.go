@@ -2,12 +2,19 @@ package handler
 
 import (
 	"github.com/iru-Y/api-rest-golang/infra"
+	"github.com/iru-Y/api-rest-golang/ps"
+	
 )
 
 var (
-	logger *infra.Logger
+	err *error
 )
 
-func InitializeHandler(){
+func InitializeRoutes() {
 	logger = infra.NewLogger("handler")
+	
+	db = ps.ConnectDb() 
+	if db != nil {
+		logger.Error("Error ao inicializar as rotas", err)
+	}
 }

@@ -1,4 +1,4 @@
-package routers
+package router
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,7 +6,7 @@ import (
 )
 
 func initializeRoutes(router *gin.Engine) {
-	handler.InitializeHandler()
+	handler.InitializeRoutes()
 	v1 := router.Group("/api/v1")
 	{
 		v1.POST("/post", handler.PostUser)

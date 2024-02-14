@@ -9,6 +9,7 @@ import (
 
 type User struct {
 	gorm.Model
+	ID 			uuid.Domain `json:"id"`
 	NAME 		string 		`json:"name"`
 	PASSWORD 	string		`json:"password"`
 	EMAIL    	string 		`json:"email"`

@@ -8,31 +8,24 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
-var (
-	ps *gorm.DB
-	err error
-)
 
-func ConnectDb() (*gorm.DB, error) {
-    config := infra.NewConfig()
-    logger := infra.NewLogger("db")
-    dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", config.DBHost, config.DBUserName, config.DBUserPassword, config.DBName, config.DBPort)
+func ConnectDb() (*gorm.DB) {
+	config := infra.NewConfig()
+	logger := infra.NewLogger("db")
+    
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", config.DBHost, config.DBUserName, config.DBUserPassword, config.DBName, config.DBPort)
 
-    ps, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-
-    if err != nil {
-        logger.Errorf("Error on connect to Database")
-        return nil, err
-    }
-    logger.Infof("Connected Successfully to the Database")
-    return ps, nil
-}
-
-func Insert(user *schemas.User) error {
-    result := ps.Create(user)
-
-    if result.Error != nil {
-        return result.Error
-    }
-    return nil
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+    
+	if err != nil {
+		logger.Errorf("Error on connect to Database")
+		return nil
+	}
+    err = db.AutoMigrate(&schemas.User{})
+	if err != nil {
+		logger.Errorf("postgres automigration error: %v", err)
+		return nil
+	}
+	logger.Infof("Connected Successfully to the Database")
+	return db
 }
