@@ -1,12 +1,13 @@
 package infra
 
-import "gorm.io/gorm"
-
-var (
-	db     *gorm.DB
-	logger *Logger
+import (
+	"gorm.io/gorm"
+	
 )
 
-func Init() error {
-	return nil
-}
+var (
+    db     *gorm.DB
+    logger *Logger
+)
+
+

@@ -1,12 +1,21 @@
-package router
+package routers
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 )
-func Initialize() {
-	
-	v1 := gin.Default()
-	initializeRoutes(v1)
-	v1.Run(":8080")
+
+func InitializeRouter() {
+	router := gin.Default()
+
+	initializeRoutes(router)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	router.Run("127.0.0.1:" + port)
 
 }
