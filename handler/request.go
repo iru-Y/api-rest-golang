@@ -3,7 +3,6 @@ package handler
 import (
 	"fmt"
 
-	"github.com/google/uuid"
 )
 
 func errParamIsRequired(n, t string) error {
@@ -11,7 +10,6 @@ func errParamIsRequired(n, t string) error {
 }
 
 type CreateUserRequest struct {
-	ID 			uuid.UUID	`json:"id"`
 	NAME     	string 		`json:"name"`
 	PASSWORD 	string 		`json:"password"`
 	EMAIL    	string 		`json:"email"`
