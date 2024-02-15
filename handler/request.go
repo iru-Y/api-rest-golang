@@ -10,10 +10,11 @@ func errParamIsRequired(n, t string) error {
 }
 
 type CreateUserRequest struct {
-	NAME     	string 		`json:"name"`
-	PASSWORD 	string 		`json:"password"`
-	EMAIL    	string 		`json:"email"`
-	ROLE      	string      `json:"role"`
+	NAME     			string 	`json:"name"`
+	PASSWORD 			string 	`json:"password"`
+	PASSWORDCONFIRM 	string 	`json:"password_confirm"`
+	EMAIL    			string 	`json:"email"`
+	ROLE      			string  `json:"role"`
 }
 
 func (r *CreateUserRequest) Validate() error {

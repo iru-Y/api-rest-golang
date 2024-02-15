@@ -34,6 +34,7 @@ func PostUser(ctx *gin.Context) {
 		ROLE:     request.ROLE,
 		NAME:     request.NAME,
 		PASSWORD: request.PASSWORD,
+		PASSWORDCONFIRM: request.PASSWORDCONFIRM,
 		EMAIL:    request.EMAIL,
 	}
 
@@ -44,5 +45,5 @@ func PostUser(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, gin.H{"status": "success", "data": user})
+	responseSucess(ctx, "Accepted!", user)
 }
